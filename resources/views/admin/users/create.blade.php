@@ -68,4 +68,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const phoneNumberInput = document.getElementById('phone_number');
+            const form = phoneNumberInput.closest('form');
+
+            form.addEventListener('submit', function (e) {
+                const phoneNumber = phoneNumberInput.value.trim();
+
+                // Check if the phone number starts with 9, 5, 2, or 46
+                const validStart = /^(9|5|2|46)/.test(phoneNumber);
+
+                // Check if the phone number length is exactly 8
+                const validLength = phoneNumber.length === 8;
+
+                if (!validStart){
+                    e.preventDefault();
+                    alert('Le numéro de téléphone doit commencer par 9, 5, 2');
+                }
+                if(!validLength){
+                    e.preventDefault(); // Prevent form submission if invalid
+                    alert('Le numéro de téléphone  doit comporter exactement 8 chiffres.');
+                }
+            });
+        });
+    </script>
 </x-app-layout>

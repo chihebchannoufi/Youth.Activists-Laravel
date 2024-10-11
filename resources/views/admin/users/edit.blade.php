@@ -45,7 +45,7 @@
 
                         <div class="mb-4">
                             <label for="phone_number" class="block text-gray-700">numéro de téléphone</label>
-                            <input type="number" id="phone_number" name="phone_number" class="form-input mt-1 block w-full border-gray-300 rounded-md" value="{{ $user->phone_number }}">
+                            <input type="number" id="phone_number" name="phone_number" class="form-input mt-1 block w-full border-gray-300 rounded-md" value="{{ $user->phone_number }}" required >
                         </div>
 
                         <div class="mb-4">
@@ -79,4 +79,29 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const phoneNumberInput = document.getElementById('phone_number');
+            const form = phoneNumberInput.closest('form');
+
+            form.addEventListener('submit', function (e) {
+                const phoneNumber = phoneNumberInput.value.trim();
+
+                // Check if the phone number starts with 9, 5, 2, or 46
+                const validStart = /^(9|5|2|46)/.test(phoneNumber);
+
+                // Check if the phone number length is exactly 8
+                const validLength = phoneNumber.length === 8;
+
+                if (!validStart){
+                    e.preventDefault();
+                    alert('Le numéro de téléphone doit commencer par 9, 5, 2');
+                }
+                if(!validLength){
+                    e.preventDefault(); // Prevent form submission if invalid
+                    alert('Le numéro de téléphone  doit comporter exactement 8 chiffres.');
+                }
+            });
+        });
+    </script>
 </x-app-layout>

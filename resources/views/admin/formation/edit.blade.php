@@ -53,4 +53,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateDebutInput = document.getElementById('date_debut');
+            const form = dateDebutInput.closest('form');
+
+            form.addEventListener('submit', function (e) {
+                const dateDebut = new Date(dateDebutInput.value);
+                const currentDate = new Date();
+
+                if (dateDebut <= currentDate) {
+                    e.preventDefault(); // Prevent form submission if the condition is not met
+                    alert('La date de début doit être supérieure à la date et l\'heure actuelles.');
+                }
+            });
+        });
+    </script>
 </x-app-layout>

@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="/admin/dashboard" >
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Welcome') }} {{ Auth::user()->name }}
-        </h2>
-    </a>
+        <a href="/admin/dashboard">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Welcome') }} {{ Auth::user()->name }}
+            </h2>
+        </a>
     </x-slot>
 
     <div class="py-12">
@@ -20,7 +20,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                        <br>
+                    <br>
                     <form action="{{ route('admin.formation.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
@@ -36,7 +36,7 @@
                             <input type="text" id="lieu" name="lieu" class="form-input mt-1 block w-full border-gray-300 rounded-md" required>
                         </div>
                         <div class="mb-4">
-                            <label for="date_debut" class="block text-gray-700">Date debut</label>
+                            <label for="date_debut" class="block text-gray-700">Date début</label>
                             <input type="datetime-local" id="date_debut" name="date_debut" class="form-input mt-1 block w-full border-gray-300 rounded-md" required>
                         </div>
                         <div class="mb-4">
@@ -52,4 +52,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateDebutInput = document.getElementById('date_debut');
+            const form = dateDebutInput.closest('form');
+
+            form.addEventListener('submit', function (e) {
+                const dateDebut = new Date(dateDebutInput.value);
+                const currentDate = new Date();
+
+                if (dateDebut <= currentDate) {
+                    e.preventDefault(); // Prevent form submission if the condition is not met
+                    alert('La date de début doit être supérieure à la date et l\'heure actuelles.');
+                }
+            });
+        });
+    </script>
 </x-app-layout>
