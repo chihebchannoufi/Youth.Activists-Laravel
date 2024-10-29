@@ -6,14 +6,14 @@
             </h2>
         </a>
     </x-slot>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="container mt-3">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="text-2xl font-bold">Liste des Utilisateurs :</h1>
-                        <a href="{{ route('admin.users.create') }}" class="btn btn-info">Ajouter un utilisateur</a>
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-info"><i class="fa-solid fa-plus"></i> Ajouter un utilisateur</a>
                     </div>
                     <br>
                     @if (session('success'))

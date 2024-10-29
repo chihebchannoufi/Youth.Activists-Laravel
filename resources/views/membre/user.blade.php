@@ -4,7 +4,7 @@
             {{ __('Welcome') }} {{ Auth::user()->name }}
         </h2>
     </x-slot>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -36,9 +36,14 @@
                                         <p>{{ $user->email }}</p>
                                         <p>{{ $user->phone_number }}</p>
                                         <br>
-                                        <a href="#" class="btn btn-primary">Social Media</a>
+                                        <a href="https://facebook.com/yourprofile">
+                                            <i class="fab fa-facebook fa-2x"></i>
+                                        </a>
+                                        <a href="https://instagram.com/yourprofile">
+                                            <i class="fab fa-instagram fa-2x"></i>
+                                        </a>
                                     </div>
-                                </div>
+                                    
                             </div>
                             @if($loop->iteration % 2 == 0)
                                 </div><div class="row">
