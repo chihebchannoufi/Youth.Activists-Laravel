@@ -42,7 +42,7 @@
                                     @if ($user->avatar)
                                         <img src="{{ asset('avatars/' . $user->avatar) }}" alt="Avatar" class="w-16 h-16 object-cover rounded-full">
                                     @else
-                                        <img src="{{ asset('avatars/default.png') }}" alt="Default Avatar" class="w-16 h-16 object-cover rounded-full">
+                                        <img src="https://png.pngtree.com/png-vector/20220628/ourmid/pngtree-user-profile-avatar-vector-admin-png-image_5289691.png" alt="Default Avatar" class="w-16 h-16 object-cover rounded-full">
                                     @endif
                                 </td>
                                 <td >{{ $user->name }}</td>
@@ -50,11 +50,11 @@
                                 <td >{{ $user->birthdate }}</td>
                                 <td >{{ $user->phone_number }}</td>
                                 <td >
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
                                     <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" ><i class="fa-solid fa-trash"></i> Supprimer</button>
                                     </form>
                                 </td>
                             </tr>

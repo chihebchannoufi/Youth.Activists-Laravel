@@ -6,6 +6,7 @@
             </h2>
         </a>
     </x-slot>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -13,7 +14,7 @@
                 <div class="container mx-auto">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h1 class="text-2xl font-bold">Ajouter une formation :</h1>
-                        <a href="{{ route('admin.formation') }}" class="btn btn-info">Liste des Formation</a>
+                        <a href="{{ route('admin.formation') }}" class="btn btn-info"><i class="fa-solid fa-list"></i> Liste des Formation</a>
                     </div>
                     @if (session('success'))
                         <div class="alert alert-success mt-3 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
@@ -46,7 +47,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">
-                            Mettre à jour
+                            <i class="fa-solid fa-wrench"></i> Mettre à jour
                         </button>
                     </form>
                 </div>

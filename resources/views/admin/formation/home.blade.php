@@ -42,11 +42,11 @@
                                 <td>{{ $formation->date_debut }}</td>
                                 <td>{{ $formation->date_fin }}</td>
                                 <td>
-                                    <a href="{{ route('admin.formation.edit', $formation) }}" class="btn btn-warning btn-sm  ">Modifier</a>
+                                    <a href="{{ route('admin.formation.edit', $formation) }}" class="btn btn-warning btn-sm  "><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
                                     <form action="{{ route('admin.formation.destroy', $formation) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm  ">Supprimer</button>
+                                        <button type="submit" class="btn btn-danger btn-sm  "><i class="fa-solid fa-trash"></i> Supprimer</button>
                                     </form>
                                 </td>
                             </tr>

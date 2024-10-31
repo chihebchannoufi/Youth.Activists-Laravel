@@ -64,5 +64,5 @@ Route::post('store/events', [EventController::class, 'store'])->name('events.sto
 
 Route::get('events/list', [HomeController::class, 'events'])->middleware(['auth','admin'])->name('events.list');
 
-
-
+Route::post('/inscriptions/{id}/accept', [InscriController::class, 'accept'])->name('inscriptions.accept');
+Route::delete('/admin/inscriptions/{id}', [InscriController::class, 'destroy'])->name('inscriptions.destroy');

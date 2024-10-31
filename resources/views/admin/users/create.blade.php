@@ -61,7 +61,7 @@
                             <input type="password" id="password_confirmation" name="password_confirmation" class="form-input mt-1 block w-full border-gray-300 rounded-md" required>
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            Créer
+                            <i class="fa-regular fa-square-plus"></i> Créer
                         </button>
                     </form>
                 </div>

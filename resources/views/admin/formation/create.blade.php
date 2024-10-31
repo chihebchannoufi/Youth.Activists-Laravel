@@ -45,7 +45,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">
-                            Créer
+                            <i class="fa-regular fa-square-plus"></i> Créer
                         </button>
                     </form>
                 </div>
