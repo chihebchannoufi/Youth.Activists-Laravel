@@ -2,7 +2,7 @@
     <x-slot name="header">
         <a href="/admin/dashboard">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Welcome') }} {{ Auth::user()->name }}
+                {{ __('Bienvenue') }} {{ Auth::user()->name }}
             </h2>
         </a>
     </x-slot>
@@ -21,7 +21,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
+                    <div class="table-responsive">
                     <table class="table table-borderless">
                         <thead>
                             <tr>
@@ -64,5 +64,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

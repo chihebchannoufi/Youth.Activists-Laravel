@@ -14,9 +14,17 @@ class HomeController extends Controller
         return view('admin.dashboard');
     }
     public function affiche(){
-        $messages = Message::all();
+        $messages = Message::orderBy('responded', 'asc')->orderBy('created_at', 'desc')->get();
         return view ('admin.messages.home', compact('messages'));
     }
+    public function markAsResponded($id)
+{
+    $message = Message::findOrFail($id);
+    $message->responded = true;
+    $message->save();
+
+    return back()->with('success', 'Message marked as responded.');
+}
     public function affiche_inscriptions(){
         $inscriptions = Inscription::all();
         return view ('admin.messages.inscription', compact('inscriptions'));

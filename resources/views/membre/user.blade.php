@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Welcome') }} {{ Auth::user()->name }}
+            {{ __('Bienvenue') }} {{ Auth::user()->name }}
         </h2>
     </x-slot>
 
@@ -24,9 +24,9 @@
                     <div class="container mt-3">
                         <div class="row">
                             @foreach($users as $user)
-                                <div class="col-md-6 mb-3">
-                                    <div class="card" style="width:70%">
-                                        <div style="width: 100%; max-width: 300px; margin: 0 auto;">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="card mx-auto" style="max-width: 100%; width: 300px;">
+                                        <div class="card-img-top-container" style="max-width: 100%; margin: 0 auto;">
                                             @if ($user->avatar)
                                                 <img src="{{ asset('avatars/' . $user->avatar) }}" alt="{{ $user->name }}'s Avatar" class="card-img-top" style="width: 100%; height: auto;">
                                             @else
@@ -34,18 +34,19 @@
                                             @endif
                                         </div>
                                         <div class="card-body">
-                                            <h1 class="display-4">{{ $user->name }}</h1>
-                                            <p>Membre</p>
-                                            <p>Né le : {{ $user->birthdate }}</p>
-                                            <p>{{ $user->email }}</p>
-                                            <p>{{ $user->phone_number }}</p>
-                                            <br>
-                                            <a href="{{ $user->facebook_profile ?? '#' }}">
-                                                <i class="fab fa-facebook fa-2x"></i>
-                                            </a>
-                                            <a href="{{ $user->instagram_profile ?? '#' }}">
-                                                <i class="fab fa-instagram fa-2x"></i>
-                                            </a>
+                                            <h1 class="display-4 text-center">{{ $user->name }}</h1>
+                                            <p class="text-center text-muted">Membre</p>
+                                            <p><strong>Né le :</strong> {{ $user->birthdate }}</p>
+                                            <p><strong>Email :</strong> {{ $user->email }}</p>
+                                            <p><strong>Téléphone :</strong> {{ $user->phone_number }}</p>
+                                            <div class="d-flex justify-content-center mt-3">
+                                                <a href="{{ $user->facebook_profile ?? '#' }}" class="mx-2" target="_blank">
+                                                    <i class="fab fa-facebook fa-2x"></i>
+                                                </a>
+                                                <a href="{{ $user->instagram_profile ?? '#' }}" class="mx-2" target="_blank">
+                                                    <i class="fab fa-instagram fa-2x"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

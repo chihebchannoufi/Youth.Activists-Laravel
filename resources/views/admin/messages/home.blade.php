@@ -2,7 +2,7 @@
     <x-slot name="header">
         <a href="/admin/dashboard">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Welcome') }} {{ Auth::user()->name }}
+                {{ __('Bienvenue') }} {{ Auth::user()->name }}
             </h2>
         </a>
     </x-slot>
@@ -20,24 +20,38 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($messages as $message)
-                            <tr>
-                                <td>{{ $message->name }}</td>
-                                <td>{{ $message->email }}</td>
-                                <td>{{ $message->message }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive"> <!-- Responsiveness ajouté -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Répondu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($messages as $message)
+                                <tr>
+                                    <td>{{ $message->name }}</td>
+                                    <td><a href="mailto:{{ $message->email }}">{{ $message->email }}</a></td>
+                                    <td>{{ $message->message }}</td>
+                                    <td>
+                                        @if(!$message->responded)
+                                            <form action="{{ route('messages.responded', $message->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-sm btn-primary">Marquer comme répondu</button>
+                                            </form>
+                                        @else
+                                            <span class="badge bg-success">Répondu</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div> <!-- Fin du conteneur responsive -->
                 </div>
             </div>
         </div>

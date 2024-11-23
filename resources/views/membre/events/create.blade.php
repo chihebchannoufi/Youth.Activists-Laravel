@@ -4,7 +4,7 @@
     <x-slot name="header">
         <a href="/admin/dashboard">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Welcome') }} {{ Auth::user()->name }}
+                {{ __('Bienvenue') }} {{ Auth::user()->name }}
             </h2>
         </a>
     </x-slot>
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="container mx-auto">
-                    <h2 class="text-2xl font-bold">Créer un événement :</h2>
+                    <h2 class="text-2xl font-bold">Créer une action :</h2>
                     <br><br>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show">
@@ -36,12 +36,17 @@
                     <form action="{{ route('events.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label for="Event_Name" class="block text-gray-700">Nom de l'événement</label>
+                            <label for="Event_Name" class="block text-gray-700">Nom de l'action</label>
                             <input type="text" id="Event_Name" name="Event_Name" class="form-input mt-1 block w-full border-gray-300 rounded-md" required>
                         </div>
                         <div class="mb-4">
-                            <label for="description" class="block text-gray-700">Description</label>
-                            <input type="text" id="description" name="description" class="form-input mt-1 block w-full border-gray-300 rounded-md" required>
+                            <label for="description" class="block text-gray-700">Catégorie</label>
+                            <select id="description" name="description" class="form-select mt-1 block w-full border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Sélectionner la catégorie</option>
+                                <option value="projet">Projet</option>
+                                <option value="formation">Formation</option>
+                                <option value="evenement">Événements</option>
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label for="Objectif" class="block text-gray-700">Objectif</label>

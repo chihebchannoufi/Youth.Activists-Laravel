@@ -2,59 +2,74 @@
     <x-slot name="header">
         <a href="/admin/dashboard">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Welcome') }} {{ Auth::user()->name }}
+                {{ __('Bienvenue') }} {{ Auth::user()->name }}
             </h2>
         </a>
     </x-slot>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="container">
+        <div class="container">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h1 class="text-2xl font-bold">Liste des futures Membres :</h1>
+                        <h1 class="card-title text-center text-primary">Liste des futures membres</h1>
                     </div>
-                    <br>
+                    
                     @if (session('success'))
-                        <div class="alert alert-success mt-3 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                            {{ session('success') }}
+                        <div class="alert alert-success bg-light text-success border border-success rounded p-3">
+                            <i class="fa-solid fa-check-circle"></i> {{ session('success') }}
                         </div>
                     @endif
-                    
-                    @foreach($inscriptions as $inscription)
-    <p><strong>Numéro :</strong> {{ $inscription->id }}</p>
-    <br>
-    <div class="mb-4 p-3 border rounded shadow-sm bg-light">
-        <p><strong>Nom :</strong> {{ $inscription->name }}</p>
-        <p><strong>Date de naissance :</strong> {{ $inscription->date_naissance }}</p>
-        <p><strong>Lieu de naissance :</strong> {{ $inscription->lieu_naissance }}</p>
-        <p><strong>Lieu de résidence :</strong> {{ $inscription->lieu_residence }}</p>
-        <p><strong>Genre :</strong> {{ $inscription->genre }}</p>
-        <p><strong>Email :</strong> {{ $inscription->mail }}</p>
-        <p><strong>Téléphone :</strong> {{ $inscription->tel }}</p>
-        <p><strong>Raison de rejoindre l'organisation :</strong> {{ $inscription->raison_org }}</p>
-        <p><strong>Compétences :</strong> {{ $inscription->competence }}</p>
-        <p><strong>Expérience :</strong> {{ $inscription->experience }}</p>
-        <p><strong>Réponse :</strong> {{ $inscription->confirmation }}</p>
-        
-        <!-- Accept Button -->
-        <br>
-        <form action="{{ route('inscriptions.accept', $inscription->id) }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Accepter</button>
-        </form>
-        <!-- Delete Button -->
-        <form action="{{ route('inscriptions.destroy', $inscription->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this inscription?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger mt-2"><i class="fa-solid fa-user-slash"></i> Rejecter</button>
-        </form>
-    </div>
-    <hr>
-    <br>
-@endforeach
 
+                    @forelse ($inscriptions as $inscription)
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">Membre #{{ $inscription->id }}</h5>
+                                <hr>
+                                <p><strong><i class="fa-solid fa-user"></i> Nom :</strong> {{ $inscription->name }}</p>
+                                <p><strong><i class="fa-solid fa-calendar"></i> Date de naissance :</strong> {{ $inscription->date_naissance }}</p>
+                                <p><strong><i class="fa-solid fa-map-marker-alt"></i> Lieu de naissance :</strong> {{ $inscription->lieu_naissance }}</p>
+                                <p><strong><i class="fa-solid fa-home"></i> Lieu de résidence :</strong> {{ $inscription->lieu_residence }}</p>
+                                <p><strong><i class="fa-solid fa-venus-mars"></i> Genre :</strong> 
+                                    <span>{{ $inscription->genre }}</span>
+                                </p>
+                                <p><strong><i class="fa-solid fa-envelope"></i> Email :</strong> {{ $inscription->mail }}</p>
+                                <p><strong><i class="fa-solid fa-phone"></i> Téléphone :</strong> {{ $inscription->tel }}</p>
+                                <p><strong><i class="fa-solid fa-lightbulb"></i> Raison de rejoindre :</strong> {{ $inscription->raison_org }}</p>
+                                <p><strong><i class="fa-solid fa-brain"></i> Compétences :</strong> {{ $inscription->competence }}</p>
+                                <p><strong><i class="fa-solid fa-briefcase"></i> Expérience :</strong> {{ $inscription->experience }}</p>
+                                <p><strong><i class="fa-solid fa-check"></i> Réponse :</strong> 
+                                    <span>{{ $inscription->confirmation }}</span>
+                                </p>
+
+                                <div class="mt-4 d-flex gap-3">
+                                    <!-- Accept Button -->
+                                    <form action="{{ route('inscriptions.accept', $inscription->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa-solid fa-check-circle"></i> Accepter
+                                        </button>
+                                    </form>
+
+                                    <!-- Reject Button -->
+                                    <form action="{{ route('inscriptions.destroy', $inscription->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir rejeter cette inscription ?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-times-circle"></i> Rejeter
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="alert alert-warning text-center">
+                            <i class="fa-solid fa-info-circle"></i> Aucune inscription trouvée.
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>

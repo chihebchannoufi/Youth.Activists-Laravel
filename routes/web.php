@@ -49,11 +49,7 @@ Route::delete('/admin/formation/{formation}', [FormationController::class, 'dest
 Route::get('membre/list',[MembreController::class,'index'])->name('membre.list');
 Route::get('membre/formation',[MembreController::class,'formation'])->name('membre.formation');
 
-Route::get('/inscription', [FrontController::class, 'index'])->name('inscription');
-Route::get('/remerciment', [FrontController::class, 'res'])->name('remerciment');
-Route::post('/store/message', [FrontController::class, 'store'])->name('message.store');
 
-Route::post('/store/inscription', [InscriController::class, 'store'])->name('inscription.store');
 
 Route::get('/message', [HomeController::class, 'affiche'])->middleware(['auth','admin'])->name('messages.Home');
 Route::get('/list/inscription', [HomeController::class, 'affiche_inscriptions'])->middleware(['auth','admin'])->name('messages.inscription');
@@ -66,3 +62,14 @@ Route::get('events/list', [HomeController::class, 'events'])->middleware(['auth'
 
 Route::post('/inscriptions/{id}/accept', [InscriController::class, 'accept'])->name('inscriptions.accept');
 Route::delete('/admin/inscriptions/{id}', [InscriController::class, 'destroy'])->name('inscriptions.destroy');
+
+
+Route::get('projets/create', [FrontController::class, 'index'])->middleware(['auth','admin'])->name('admin.projets.create');
+Route::post('projets/store', [FrontController::class, 'store'])->middleware(['auth','admin'])->name('admin.projets.store');
+Route::get('projets/home', [FrontController::class, 'list'])->middleware(['auth','admin'])->name('admin.projets');
+Route::put('/messages/{id}/responded', [HomeController::class, 'markAsResponded'])->middleware(['auth','admin'])->name('messages.responded');
+
+Route::delete('/projets/{projet}', [FrontController::class, 'destroy'])->middleware(['auth','admin'])->name('projets.destroy');
+
+Route::get('/projets/{projet}/edit', [FrontController::class, 'edit'])->middleware(['auth','admin'])->name('projets.edit');
+Route::put('/projets/{projet}', [FrontController::class, 'update'])->middleware(['auth','admin'])->name('projets.update');

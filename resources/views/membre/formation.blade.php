@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Welcome') }} {{ Auth::user()->name }}
+            {{ __('Bienvenue') }} {{ Auth::user()->name }}
         </h2>
     </x-slot>
 <div class="py-12">
@@ -17,7 +17,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-
+                <div class="table-responsive">
                 <table class="table table">
                     <thead>
                         <tr>
@@ -53,5 +53,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </x-app-layout>
